@@ -164,7 +164,7 @@ const ProfileCard = ({currentUser}) => {
 
     {/* //filter the profile for their own post in profile */}
     
-    <MyPosts style={{width:"100%"}}>
+    <MyPosts style={{width:"95%"}}>
     {allStatus?.map((posts) => {
           return (
             <div key={posts.id}>
