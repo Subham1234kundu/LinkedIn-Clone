@@ -7,7 +7,7 @@ import { getSingleStatus,getSingleUser ,editProfile} from '../../../api/FireStor
 import PostCard from '../postCard';
 import { useLocation } from 'react-router-dom';
 import { UploadImg as UploadImgApi } from '../../../api/ImageUpload';
-import { Button, Flex, Modal } from "antd";
+import {  Modal } from "antd";
 
 const ProfileCard = ({currentUser}) => {
   let location = useLocation();
@@ -27,14 +27,7 @@ const ProfileCard = ({currentUser}) => {
         
     }
 
-    useEffect(() => {
-      // Fetch the current user's profile data whenever currentUser changes
-      if (currentUser?.id) {
-        getSingleUser(setCurrentProfile, currentUser?.email);
-      }
-    
-    }, [currentUser]);
-  
+
     useEffect(() => {
       if (location?.state?.id) {
         getSingleStatus(setAllStatus, location?.state?.id);
@@ -45,6 +38,7 @@ const ProfileCard = ({currentUser}) => {
       }
       
     }, [location]);
+
    
 
   return (

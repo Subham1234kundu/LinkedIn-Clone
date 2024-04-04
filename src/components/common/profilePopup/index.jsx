@@ -6,7 +6,7 @@ import Buttons from "../Button";
 import styled from "styled-components";
 
 
-export default function ProfilePopup({allusers,filteredUsers}) {
+export default function ProfilePopup({allusers}) {
     let navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     useMemo(() => {
