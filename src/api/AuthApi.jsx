@@ -24,11 +24,11 @@ export const RegisterAPI = (email,password) => {
   };
 
   export const googleSignInAPI = () => {
-    try{
-        let googleProvider = new GoogleAuthProvider();
-        let responce = signInWithPopup(auth,googleProvider);
-        return responce;
-    } catch(err){
+    try {
+      let googleProvider = new GoogleAuthProvider();
+      let res = signInWithPopup(auth, googleProvider);
+      return res;
+    } catch (err) {
       return err;
     }
   };

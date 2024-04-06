@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from "styled-components";
-
+import { useNavigate } from 'react-router-dom';
 
 const SignInC = ({googleSignIn,Login,credentail,setCredentails}) => {
+    let navigate  = useNavigate();
     return (
     
         <SinePage>

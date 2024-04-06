@@ -205,7 +205,7 @@ const Google = styled.button`
   background-color: #fff;
   align-items: center;
   height: 56px;
-  width: 100%;
+  width: 608px;
   border-radius: 28px;
   box-shadow: inset 0 0 0 1px rgba(0 0 0 /60%),
               inset 0 0 0 2px rgba(0 0 0 /0%),
@@ -219,6 +219,10 @@ const Google = styled.button`
     background-color: rgba(207,207,207,0.25);
   }
   margin-bottom: 20px;
+  @media(max-width: 786px){
+          width: 365px;
+
+        }
 
 `;
 
