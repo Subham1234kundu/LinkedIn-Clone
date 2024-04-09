@@ -18,7 +18,7 @@ const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
   const[isEdit,setIsEdit] = useState(false);
   const [postImg,setPostImg] = useState("");
   const [forArtical ,setForArtical] = useState(false);
-  
+  const [isUpdating, setIsUpdating] = useState(false);
 
   let navigate  = useNavigate();
   
@@ -37,7 +37,7 @@ const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
     
     await PostData(object);
     await setmodalOpen(false);
-    setStatus(false);
+    setIsEdit(false);
     await setStatus("");
   };
 
@@ -49,10 +49,19 @@ const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
     
   };
 
-  const updateStatus = ()=>{
-    updatePost(currentPost?.id,status,postImg);
+  const updateStatus = async () => {
+    setIsUpdating(true); 
+    const updatedPostImg = postImg || currentPost.postImg;
+  
+    await updatePost(currentPost.id, status, updatedPostImg);
     setmodalOpen(false);
-  }
+    setIsEdit(false);
+
+    setIsUpdating(false); 
+    setStatus('');
+    setPostImg('');
+    setCurrentPost({});
+  };
   
   
   useMemo(()=>{
@@ -69,7 +78,7 @@ const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
           <img src={allusers.filter((item)=> item.id === currentUser.id).map((item)=> item.imageLink)[0]} alt=""  onClick={()=>navigate("/profile",{
             state:{id:currentUser.id}
           })}/>
-          <button style={{cursor:"pointer"}} onClick={() => setmodalOpen(true)}>Start a post</button>
+          <button style={{cursor:"pointer"}} onClick={() => {setmodalOpen(true);setIsEdit(false);}}>Start a post</button>
           <ModalComponent 
            modalOpen={modalOpen}
            setmodalOpen={setmodalOpen}
@@ -85,6 +94,7 @@ const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
            currentPost = {currentPost}
            setCurrentPost = {setCurrentPost}
            setForArtical = {setForArtical}
+           isUpdating={isUpdating}
            />
         </div>
           

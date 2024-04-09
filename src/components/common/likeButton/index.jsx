@@ -5,7 +5,6 @@ import TotalLike from './TotalLike';
 import TotalComment from './TotalComment';
 import styled from 'styled-components';
 import { getCurrentTimeStamp } from '../LiveMoment';
-import { AiOutlineRetweet } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 
 const LikeButton = ({userId,postId,currentUser,getEditzData,posts}) => {
@@ -36,9 +35,7 @@ const[commentCount , setCommentCount] = useState(0);
         
     },[userId,postId]);
 
-    const handleLikeForComment = ()=>{
-        likeComment(userId,postId,liked,comments.map((comment)=> comment.id))
-    }
+
     
 
     useMemo(()=>{
@@ -64,10 +61,7 @@ const[commentCount , setCommentCount] = useState(0);
      </CommentBox>
      
 
-     <Repost>
-    <AiOutlineRetweet />
-    <span>Repost</span>
-   </Repost>
+
 
     {currentUser.id === posts.userId ? <ToEdit onClick={()=>getEditzData(posts)}>
             <FiEdit />
@@ -260,11 +254,6 @@ const NameComment = styled.div`
     margin-left: 5px;
 `;
 
-const Repost = styled.div`
-   display: flex;
-    align-items: center;
-    justify-content: center;
-`;
 
 const ToEdit = styled.div`
     display: flex;

@@ -10,7 +10,6 @@ import Select from 'react-select';
 const ProfileEdit = ({modalOpen,setmodalOpen,currentUser}) => {
     const [editInput , setEditInput] = useState(currentUser);
     const [value, setValue] = useState({});
-    const [selectedValue, setSelectedValue] = useState(value);
 
     const getInput = (event)=>{
         let {name,value} = event.target;
@@ -38,13 +37,13 @@ return (
       <Modal
        
         width={750}
-        height={800}
+        
         centered
         open={modalOpen}
         onOk={() => setmodalOpen(false)}
         onCancel={() => setmodalOpen(false)}
         footer = {[
-            <Button key="submit" type='primary' onClick={updateProfileData}  >
+            <Button style={{marginTop:"30px"}} key="submit" type='primary' onClick={updateProfileData}  >
                 Save
             </Button>
             
@@ -131,7 +130,7 @@ return (
             name='aboutme' value={editInput.aboutme} />
             </li>
 
-            <li>    
+            <li >    
             <p>Skills*</p>
             <input placeholder='my skills'
             onChange={getInput}

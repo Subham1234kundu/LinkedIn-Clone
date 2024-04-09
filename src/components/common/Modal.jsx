@@ -1,20 +1,20 @@
-import React, { useRef, useState } from 'react'
+import React, {  useState } from 'react'
 import styled from 'styled-components'
 import { Button, Modal,Progress } from 'antd'
 import { AiFillPicture } from "react-icons/ai";
-import { BsEmojiSmileUpsideDown } from "react-icons/bs";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import EmojiPicker,{Emoji} from 'emoji-picker-react';
 
-const ModalComponent = ({modalOpen,setmodalOpen,setStatus,status,sendStatus,isEdit,updateStatus,currentUser,setPostImg,postImg,UploadPostImg,currentPost,setCurrentPost,setForArtical}) => {
+
+const ModalComponent = ({modalOpen,setmodalOpen,setStatus,status,sendStatus,isEdit,updateStatus,currentUser,setPostImg,postImg,UploadPostImg,currentPost,setCurrentPost,isUpdating}) => {
   
   const [progress,setProgress] = useState(0);
+
+  
 
   return (
     <>
       <Modal
-
         centered
         open={modalOpen}
         onOk={() => {
@@ -22,30 +22,30 @@ const ModalComponent = ({modalOpen,setmodalOpen,setStatus,status,sendStatus,isEd
           setmodalOpen(false);
           setPostImg("");
           setCurrentPost({});
-          setEmojis([]);
-          setShowPicker(false);
         }}
+
         onCancel={() =>{ 
           setStatus("");
           setmodalOpen(false);
           setPostImg("");
           setCurrentPost({});
-          setEmojis([]);
-          setShowPicker(false);
+          
+          
         }}
         footer = {[
           
             <Button
+            onClick={isEdit  ? updateStatus : sendStatus}
              key="submit" 
              type='primary' 
-             disabled ={status.length || postImg?.length >0  > 0 ? false:true} 
-             onClick={isEdit  ? updateStatus : sendStatus}>
+             disabled ={(status.length > 0 )|| (postImg?.length >0 ) ? false:true} 
+             >
                {isEdit  ? "Update":"Post"}
             </Button>
             
         ]}
       >
-        <ModalDivs >
+        <ModalDivs>
           <UserNameImage>
               <img src={currentUser.imageLink} alt="" />
               <div>
@@ -57,19 +57,18 @@ const ModalComponent = ({modalOpen,setmodalOpen,setStatus,status,sendStatus,isEd
           
         
           <ReactQuill
-        
-        theme='snow'
-        value={status}
-        onChange={setStatus}
-        placeholder='Share something useful...'
-        
-      />
+            theme='snow'
+            value={status}
+            onChange={setStatus}
+            placeholder='Share something useful...'    
+       />
         
         {
-          progress === 0 || progress === 100 ?<></>:<ProgressBar><Progress type="circle" percent={progress} /> <p>processing...</p>
+          progress === 0 || progress === 100 ? <></> : <ProgressBar><Progress type="circle" percent={progress} /> <p>processing...</p>
           </ProgressBar>
         }
-        {postImg?.length > 0 || currentPost?.postImg?.length ? <img src={postImg  || currentPost?.postImg} alt='postImg'/>:<></>}
+
+        {postImg?.length > 0 || currentPost?.postImg?.length ? <img src={postImg  || currentPost?.postImg } alt='postImg'/>:<></>}
         <h5>
         
 
