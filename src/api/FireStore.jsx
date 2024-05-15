@@ -1,14 +1,13 @@
 import { firestore} from '../firebase';
-import {addDoc,collection,onSnapshot,doc,updateDoc,query,where,setDoc,deleteDoc,getDocs} from "firebase/firestore";
+import {addDoc,collection,onSnapshot,doc,updateDoc,query,where,setDoc,deleteDoc} from "firebase/firestore";
 import {toast} from "react-toastify";
-
 
 let postsRef = collection(firestore,"posts");
 let userRef = collection(firestore,"users");
 let likeRef = collection(firestore,"likes");
 let commentRef = collection(firestore,"comments");
 let connectionRef = collection(firestore, "connections");
-let commentLikeRef = collection(firestore, "likeComment");
+
 
 export const PostData = (object) => {
   addDoc(postsRef,object)
@@ -134,6 +133,9 @@ export const getLikesByUser = (userId,postId,setLikeCount,setLiked)=>{
 
 export const postComment = (postId,comment,timeStamp,name,imageLink)=>{
   try{
+    if (imageLink === undefined) {
+      imageLink = "";
+    }
     addDoc(commentRef,{
       postId,comment,timeStamp,name,imageLink
     })

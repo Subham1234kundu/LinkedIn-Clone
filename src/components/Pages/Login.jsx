@@ -10,9 +10,13 @@ const Login = () => {
   let [loading,setLoading] = useState(true);
   let navigate  = useNavigate();
 
-  const googleSignIn = ()=>{
-    let res =  googleSignInAPI();
-    console.log(res)
+  const googleSignIn = async ()=>{
+    try {
+      const res = await googleSignInAPI();
+      console.log("User signed in:", res.user);
+    } catch (err) {
+      console.error("Error during sign-in:", err);
+    }
   }
 
   useEffect(()=>{

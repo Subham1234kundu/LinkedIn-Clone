@@ -27,9 +27,13 @@ const SignIn = () => {
 
   
 
-  const googleSignIn = ()=>{
-    let res =  googleSignInAPI();
-    localStorage.setItem("userEmail",res.user.email);
+  const googleSignIn = async ()=>{
+    try {
+      const res = await googleSignInAPI();
+      console.log("User signed in:", res.user);
+    } catch (err) {
+      console.error("Error during sign-in:", err);
+    }
   }
   useEffect(()=>{
     onAuthStateChanged(auth,(res)=>{

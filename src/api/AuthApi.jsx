@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {signInWithEmailAndPassword,createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,signOut} from 'firebase/auth';
 import { auth} from '../firebase';
 
@@ -23,10 +23,10 @@ export const RegisterAPI = (email,password) => {
     }
   };
 
-  export const googleSignInAPI = () => {
+  export const googleSignInAPI = async() => {
     try {
       let googleProvider = new GoogleAuthProvider();
-      let res = signInWithPopup(auth, googleProvider);
+      let res = await signInWithPopup(auth, googleProvider);
       return res;
     } catch (err) {
       return err;

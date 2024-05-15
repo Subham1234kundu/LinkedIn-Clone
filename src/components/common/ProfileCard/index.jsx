@@ -1,22 +1,31 @@
-import React ,{useState, useMemo, useEffect} from 'react'
+import React ,{useState, useEffect, useMemo} from 'react'
 import ProfileEdit from '../profile.Edit/ProfileEdit';
 import AddPicModal from './AddPicModal';
 import styled from 'styled-components'
 import { MdOutlineEdit } from "react-icons/md";
-import { getSingleStatus,getSingleUser ,editProfile} from '../../../api/FireStore';
+import { getSingleStatus,getSingleUser ,editProfile, getStatus, getAllUsers} from '../../../api/FireStore';
 import PostCard from '../postCard';
 import { useLocation } from 'react-router-dom';
-import { UploadImg as UploadImgApi } from '../../../api/ImageUpload';
+import { UploadImg as UploadImgApi, UploadPostImg } from '../../../api/ImageUpload';
 import {  Modal } from "antd";
+import ModalComponent from '../Modal';
+
 
 const ProfileCard = ({currentUser}) => {
   let location = useLocation();
   const [modalOpen, setmodalOpen] = useState(false);
+  const [modalOpenEd, setModelOpenEd] = useState(false)
   const [addPicModalPage, setAddPicModalPage] = useState(false);
+  const [status , setStatus] = useState("");
+  const[isEdit,setIsEdit] = useState(false);
+  const [postImg,setPostImg] = useState("");
   const[allStatus, setAllStatus] = useState([]);
   const [currentProfile,setCurrentProfile] = useState({});
   const [currentImg , setCurrentImg] = useState({});
   const [progress,setProgress] = useState(0);
+  const [allusers,setAllUsers] = useState([]);
+  const [currentPost , setCurrentPost] = useState({});
+  const [isUpdating, setIsUpdating] = useState(false);
   
 
     const getImg = (event)=>{
@@ -39,19 +48,81 @@ const ProfileCard = ({currentUser}) => {
       
     }, [location]);
 
+    const sendStatus =  async()=>{
+    
+      let object = {
+        status:status,
+        timeStamp:getCurrentTimeStamp('hour'),
+        userEmail:currentUser.email,
+        userName:currentUser.name,
+        postId:GetUniqueId(),
+        userId:currentUser.id,
+        postImg:postImg,
+      };
+      
+      
+      await PostData(object);
+      await setmodalOpen(false);
+      setIsEdit(false);
+      await setStatus("");
+    }
+  
+  
+    const getEditzData = (posts)=>{
+      setmodalOpen(true);
+      setStatus(posts?.status);
+      setCurrentPost(posts)
+      setIsEdit(true);
+      
+    };
+  
+    const updateStatus =  () => {
+      setIsUpdating(true); 
+      const updatedPostImg = postImg || currentPost.postImg;
+    
+      updatePost(currentPost.id, status, updatedPostImg);
+      setmodalOpen(false);
+      setIsEdit(false);
+  
+      setIsUpdating(false); 
+      setStatus('');
+      setPostImg('');
+      setCurrentPost({});
+    };
+    
+    
+    useMemo(()=>{
+      getStatus(setAllStatus);
+      getAllUsers(setAllUsers);
+    },[]);
+
    
 
   return (
     <Container>  
-     
+     <ModalComponent 
+           modalOpen={modalOpen}
+           setmodalOpen={setmodalOpen}
+           status={status}
+           setStatus={setStatus}
+           sendStatus={sendStatus}
+           isEdit={isEdit}
+           updateStatus={updateStatus}
+           currentUser ={currentUser}
+           postImg ={postImg}
+           setPostImg = {setPostImg}
+           UploadPostImg={UploadPostImg}
+           currentPost = {currentPost}
+           setCurrentPost = {setCurrentPost}
+           isUpdating={isUpdating}
+           />
     <AddCart>
         <UserInfo>
         <CardBackground>
-          
         </CardBackground>
         
-        <ProfileEdit modalOpen={modalOpen}
-           setmodalOpen={setmodalOpen} currentUser={currentUser}/>
+        <ProfileEdit modalOpen={modalOpenEd}
+           setmodalOpen={setModelOpenEd} currentUser={currentUser}/>
 
          {currentUser.id === location?.state?.id ?
         <AddPicModal 
@@ -79,7 +150,7 @@ const ProfileCard = ({currentUser}) => {
                           alt="post-image"
                         />
                         
-                      </Modal>
+        </Modal>
          }
         
         
@@ -92,7 +163,7 @@ const ProfileCard = ({currentUser}) => {
                   : currentProfile?.imageLink} alt="" />
             </Photo>   
             {currentUser.id === location?.state?.id ? (
-            <Edit onClick={() => setmodalOpen(true)}><MdOutlineEdit/></Edit>
+            <Edit onClick={() => setModelOpenEd(true)}><MdOutlineEdit/></Edit>
             ) : 
             (<></>)}
         </div> 
@@ -145,6 +216,7 @@ const ProfileCard = ({currentUser}) => {
 
         
         <Item>
+          
         <a href={Object.values(currentProfile).length===0
          ?currentUser.website
          :currentProfile?.website} >
@@ -168,7 +240,7 @@ const ProfileCard = ({currentUser}) => {
     {allStatus?.map((posts) => {
           return (
             <div key={posts.id}>
-              <PostCard posts={posts} />
+              <PostCard posts={posts} getEditzData={getEditzData} />
             </div>
           );
         })}
@@ -296,53 +368,9 @@ const UserInfo = styled.div`
     font-weight: 600;
  `;
 
- const AddPhotoText = styled.div`
-    color: #0a66c2;
-    margin-top: 4px;
-    font-size: 12px;
-    line-height: 1.33;
-    font-weight: 400;
+ 
 
- `;
-
- const Widget = styled.div`
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    padding-top: 12px;
-    padding-bottom: 12px;
-    & > a{
-        text-decoration: none;
-        display: flex;
-        justify-content: space-between;
-        align-items:center;
-        padding: 4px 12px;
-
-        &:hover{
-            background-color: rgba(0,0,0,0.08);
-        }
-        div{
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            span{
-                font-size: 12px;
-                line-height: 1.333;
-                &:first-child{
-                    color: rgba(0,0,0,0.6);
-                }
-                &:nth-child(2){
-                    color: rgba(0,0,0,1);
-                }
-
-            }
-        }
-    }
-
-    svg{
-        color: rgba(0,0,0,1);
-    }
- `;
-
- const Item = styled.a`
+ const Item = styled.div`
         a{
             font-weight: 500;
             color: #053ec4;

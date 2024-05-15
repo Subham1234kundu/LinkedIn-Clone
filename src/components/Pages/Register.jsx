@@ -28,9 +28,13 @@ const Register = () => {
     }
   }
 
-  const googleSignIn = ()=>{
-    let res =  googleSignInAPI()
-    console.log(res)
+  const googleSignIn = async ()=>{
+    try {
+      const res = await googleSignInAPI();
+      console.log("User signed in:", res.user);
+    } catch (err) {
+      console.error("Error during sign-in:", err);
+    }
   }
 
   return (
@@ -48,7 +52,7 @@ const Register = () => {
       
       <InputDiv>
       <input type="text" placeholder='Your name' onChange={(e)=>setCredentails({...credentail, name:e.target.value})} />
-      <input type="email" placeholder='Enter or Phone' onChange={(e)=>setCredentails({...credentail, email:e.target.value})}/>
+      <input type="email" placeholder='Enter your mail' onChange={(e)=>setCredentails({...credentail, email:e.target.value})}/>
       <input type='password' placeholder='Password(6 or more charecters)'onChange={(e)=>setCredentails({...credentail, password:e.target.value})}/>
       </InputDiv>
       <p>By clickin and join you agree to the linkdin <span>User Agreement</span> <span>Privacy Policy</span>and <span>Cookie Policy</span></p>

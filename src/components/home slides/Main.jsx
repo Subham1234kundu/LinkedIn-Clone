@@ -8,7 +8,6 @@ import GetUniqueId from '../common/GetUniqueId'
 import PostCard from '../common/postCard';
 import { getAllUsers,updatePost } from '../../api/FireStore';
 import { UploadPostImg } from '../../api/ImageUpload';
-
 const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
   const [modalOpen, setmodalOpen] = useState(false);
   const [status , setStatus] = useState("");
@@ -32,16 +31,17 @@ const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
       postId:GetUniqueId(),
       userId:currentUser.id,
       postImg:postImg,
-    }
+    };
     
     
     await PostData(object);
     await setmodalOpen(false);
     setIsEdit(false);
     await setStatus("");
-  };
+  }
 
-  function getEditzData(posts){
+
+  const getEditzData = (posts)=>{
     setmodalOpen(true);
     setStatus(posts?.status);
     setCurrentPost(posts)
@@ -49,11 +49,11 @@ const Main = ({currentUser,allImgOpen,setAllImgOpen}) => {
     
   };
 
-  const updateStatus = async () => {
+  const updateStatus =  () => {
     setIsUpdating(true); 
     const updatedPostImg = postImg || currentPost.postImg;
   
-    await updatePost(currentPost.id, status, updatedPostImg);
+    updatePost(currentPost.id, status, updatedPostImg);
     setmodalOpen(false);
     setIsEdit(false);
 

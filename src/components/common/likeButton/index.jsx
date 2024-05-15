@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { getCurrentTimeStamp } from '../LiveMoment';
 import { FiEdit } from "react-icons/fi";
 
+
 const LikeButton = ({userId,postId,currentUser,getEditzData,posts}) => {
  const [likeCount , setLikeCount ] = useState(0);
  const [liked ,setLiked] = useState(false);
@@ -26,7 +27,7 @@ const[commentCount , setCommentCount] = useState(0);
     }
     
     const addComment = ()=>{
-        postComment(postId,comment,getCurrentTimeStamp('hour'),currentUser?.name, currentUser.imageLink);
+        postComment(postId,comment,getCurrentTimeStamp('hour'),currentUser?.name, currentUser?.imageLink);
         setComment("");
     }
     useMemo(()=>{

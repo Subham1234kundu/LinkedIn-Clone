@@ -17,9 +17,9 @@ const ProfileEdit = ({modalOpen,setmodalOpen,currentUser}) => {
         setEditInput({...editInput ,...input});
     }
     
-    const updateProfileData = async ()=>{
-        await editProfile(currentUser?.id ,editInput);
-        await setmodalOpen(false);
+    const updateProfileData =  ()=>{
+        editProfile(currentUser?.id ,editInput);
+         setmodalOpen(false);
         
     }
 
@@ -60,14 +60,16 @@ return (
              <p>name*</p>
              <input type="text" placeholder='name'
             onChange={getInput}  
-            name='name' value={editInput.name}/>
+            name='name'/>
             </li>
 
             <li>
             <p>Headline*</p>
-            <input type="text" placeholder='Headline'
+            <input type="text" 
+            placeholder='Headline'
             onChange={getInput}
-            name='headline' value={editInput.headline}/>
+            name='headline'
+            />
             </li>
                 
             <li>
@@ -85,15 +87,16 @@ return (
             <li>
                 <h1>Education</h1>
             <p>Collage*</p>
-            <input type="text" placeholder='collage'
-            onChange={getInput}  value={editInput.collage}
+            <input type="text" 
+            placeholder='collage'
+            onChange={getInput} 
             name='collage'/>
             </li>
 
             <li>
                 <p>Industry* </p>
-                <input type="text" placeholder='Ex:Retail' 
-                value={editInput.industry} 
+                <input type="text" 
+                placeholder='Ex:Retail' 
                 onChange={getInput}
                 name='industry'/>
             </li>
@@ -102,39 +105,45 @@ return (
             <li>
                 <h1>Location</h1>
             <p>country/Region*</p>
-            <input type="text" placeholder='country'
+            <input type="text" 
+            placeholder='country'
             onChange={getInput}
-            name='country'  value={editInput.country}/>
+            name='country' 
+            />
             </li>
 
             <li>    
             <p>City*</p>
-            <input type="text" placeholder='City'
-            onChange={getInput}  value={editInput.city}
+            <input type="text"
+             placeholder='City'
+            onChange={getInput}
             name='city'/>
             </li>
             
             <li>    
             <p>website*</p>
             <input placeholder='my website'
-            onChange={getInput} value={editInput.website}
+            onChange={getInput} 
             name='website'/>
             </li>
 
 
             <li>
             <p>About*</p>
-            <textarea type="text" placeholder='About me'
+            <textarea type="text" 
+            placeholder='About me'
             onChange={getInput}
             rows={5} 
-            name='aboutme' value={editInput.aboutme} />
+            name='aboutme' 
+            />
             </li>
 
-            <li >    
+            <li>    
             <p>Skills*</p>
             <input placeholder='my skills'
             onChange={getInput}
-            name='skills' value={editInput.skills}/>
+            name='skills' 
+            />
             </li>
 
 
@@ -151,31 +160,8 @@ return (
 
 }
 
-export default ProfileEdit
+export default ProfileEdit;
 
-const MiddleCard = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-
-`
-
-const EditCard = styled.div`
-     width: 600px;
-     height: 100vh;
-    background-color: #fff;
-    border-radius: 5px;
-    position: relative;
-    border: none;
-    padding: 20px;
-   
-`;
-
-const EditNav = styled.div`
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
-`;
 
 const InputCard = styled.ul`
    list-style: none;
@@ -209,5 +195,31 @@ const InputCard = styled.ul`
         font-size: large;
    }
 `;
+
+
+const MiddleCard = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+
+`
+
+const EditCard = styled.div`
+     width: 600px;
+     height: 100vh;
+    background-color: #fff;
+    border-radius: 5px;
+    position: relative;
+    border: none;
+    padding: 20px;
+   
+`;
+
+const EditNav = styled.div`
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+`;
+
 
 

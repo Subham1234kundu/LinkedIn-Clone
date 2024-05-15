@@ -39,9 +39,12 @@ const PostCard= ({posts ,id,getEditzData,allImgOpen}) => {
       
                   <button>
                   {currentUser.id === posts.userId ?
-                    <RxCross1 onClick={()=>deletePost(posts.id)}/>:<></>}
+                    <RxCross1 onClick={()=>deletePost(posts.id)}/> :<></>}
+                    
                   </button>
+                  
                 </SharedActor>
+                
       
                 <Description key={posts.id} dangerouslySetInnerHTML={ {__html:posts.status}}>
                  
@@ -69,7 +72,9 @@ const PostCard= ({posts ,id,getEditzData,allImgOpen}) => {
       
                 <SocialActions>                             
                       
-                      <LikeButton userId ={currentUser?.id} postId = {posts.id} currentUser = {currentUser} getEditzData={getEditzData} posts={posts}/>
+                      <LikeButton userId ={currentUser?.id} postId = {posts.id} currentUser = {currentUser} getEditzData={getEditzData} posts={posts} />
+                      
+
                       
                       <Modal
                         centered

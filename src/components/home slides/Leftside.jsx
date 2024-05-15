@@ -25,10 +25,9 @@ const Leftside = ({currentUser,allImgOpen}) => {
      })}>
            <Photo><img src={currentUser?.imageLink} alt="" /></Photo>
            <Link >Welcome, {currentUser.name}</Link>
-       </a>
-       <a>
            <AddPhotoText>Add aphoto</AddPhotoText>
        </a>
+
        </UserInfo>
        <Widget >
            <a onClick={()=>navigate("/connections")}>

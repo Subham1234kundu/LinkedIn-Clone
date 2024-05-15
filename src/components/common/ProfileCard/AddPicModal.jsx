@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Progress,Space, Modal } from 'antd'
+import { Button, Progress, Modal } from 'antd'
 
 
 const AddPicModal = ({setAddPicModalPage,addPicModalPage,currentImg,getImg,uploadImg,progress}) => {

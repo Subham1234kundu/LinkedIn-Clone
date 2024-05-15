@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { getAllUsers, addConnection,getConnection } from "../api/FireStore"
+import { getAllUsers, addConnection } from "../api/FireStore"
 import styled from "styled-components"
 import ConnectedUsers from "./common/ConnectedUsers/index.jsx"
 
