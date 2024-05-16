@@ -28,9 +28,9 @@ const Register = () => {
     }
   }
 
-  const googleSignIn = async ()=>{
+  const googleSignIn =  ()=>{
     try {
-      const res = await googleSignInAPI();
+      const res =  googleSignInAPI();
       console.log("User signed in:", res.user);
     } catch (err) {
       console.error("Error during sign-in:", err);
