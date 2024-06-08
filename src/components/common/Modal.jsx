@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import  {  useState } from 'react'
 import styled from 'styled-components'
 import { Button, Modal,Progress } from 'antd'
 import { AiFillPicture } from "react-icons/ai";

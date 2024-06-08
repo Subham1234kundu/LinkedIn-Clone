@@ -1,4 +1,4 @@
-import React, { useEffect ,useState,useMemo} from 'react'
+import  { useEffect ,useState,useMemo} from 'react'
 import ProfileComponent from '../ProfileC';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase';

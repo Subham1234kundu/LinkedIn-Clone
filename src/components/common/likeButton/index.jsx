@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import  { useMemo, useState } from 'react'
 import { likePost,getLikesByUser,postComment,getComments,getAllUsers } from '../../../api/FireStore';
 import { AiFillLike,AiOutlineLike  } from "react-icons/ai";
 import TotalLike from './TotalLike';

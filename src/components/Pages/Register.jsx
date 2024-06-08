@@ -1,6 +1,6 @@
-import React from 'react'
+
 import { useState } from 'react';
-import { googleSignInAPI,RegisterAPI } from '../../api/AuthApi';
+import {RegisterAPI } from '../../api/AuthApi';
 import { postUsersData } from '../../api/FireStore';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';

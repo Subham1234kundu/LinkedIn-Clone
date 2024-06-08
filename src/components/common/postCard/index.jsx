@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react'
+import  { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import LikeButton from '../likeButton';
 import { getCurrenUser,getAllUsers,deletePost } from '../../../api/FireStore';
 import TotalLike from '../likeButton/TotalLike';
 import { RxCross1 } from "react-icons/rx";
-import { Button, Flex, Modal } from "antd";
+import {  Modal } from "antd";
 
 const PostCard= ({posts ,id,getEditzData,allImgOpen}) => {
   let navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { getAllUsers, addConnection } from "../api/FireStore"
 import styled from "styled-components"
 import ConnectedUsers from "./common/ConnectedUsers/index.jsx"
@@ -10,7 +10,7 @@ const ConnectionC = ({currentUser}) => {
     
     const getCurrUser = (id)=>{
         
-        addConnection(currentUser.id,id)
+        addConnection(currentUser?.id,id)
     };
 
     useEffect(()=>{

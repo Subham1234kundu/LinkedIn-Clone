@@ -1,4 +1,4 @@
-import React ,{useState, useEffect, useMemo} from 'react'
+import {useState, useEffect, useMemo} from 'react'
 import ProfileEdit from '../profile.Edit/ProfileEdit';
 import AddPicModal from './AddPicModal';
 import styled from 'styled-components'
