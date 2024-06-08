@@ -28,14 +28,6 @@ const Register = () => {
     }
   }
 
-  const googleSignIn =  ()=>{
-    try {
-      const res =  googleSignInAPI();
-      console.log("User signed in:", res.user);
-    } catch (err) {
-      console.error("Error during sign-in:", err);
-    }
-  }
 
   return (
     <RegisterPage>
@@ -62,10 +54,7 @@ const Register = () => {
       
       
 
-      <Google onClick={googleSignIn}>
-        <img src="/images/google.svg" alt="" />
-        sign in with google
-       </Google>
+
      
       <Footer>
         <p>Already on Linkedin? <span onClick={()=>navigate("/signin")}>Sign in</span></p>
@@ -201,34 +190,7 @@ const Button = styled.button`
         }
 `;
 
-const Google = styled.button`
-  display: flex;
-  cursor: pointer;
-  border: 1px solid #212121;
-  justify-content: center;
-  background-color: #fff;
-  align-items: center;
-  height: 56px;
-  width: 608px;
-  border-radius: 28px;
-  box-shadow: inset 0 0 0 1px rgba(0 0 0 /60%),
-              inset 0 0 0 2px rgba(0 0 0 /0%),
-              inset 0 0 0 1px rgba(0 0 0 /0),;
-  vertical-align: middle;   
-  transition-duration: 167ms;
-  font-size: 20px;
-  color: rgba(0,0,0,0.6);
-  &:hover{
-    color: rgba(0,0,0,0.75);
-    background-color: rgba(207,207,207,0.25);
-  }
-  margin-bottom: 20px;
-  @media(max-width: 786px){
-          width: 365px;
 
-        }
-
-`;
 
 const Footer = styled.div`
     p{
