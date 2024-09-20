@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react'
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import { googleSignInAPI } from '../../api/AuthApi';
-import { auth } from '../../firebase';
+import { auth } from '../../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import Loader from '../common/Loader';
 

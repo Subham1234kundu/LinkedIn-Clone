@@ -1,5 +1,5 @@
 
-import { storage } from '../firebase';
+import { storage } from '../lib/firebase';
 import {ref,getDownloadURL,uploadBytesResumable} from 'firebase/storage';
 import { editProfile } from './FireStore';
 

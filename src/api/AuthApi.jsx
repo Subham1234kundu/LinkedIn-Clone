@@ -1,6 +1,6 @@
 
 import {signInWithEmailAndPassword,createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,signOut} from 'firebase/auth';
-import { auth} from '../firebase';
+import { auth} from '../lib/firebase';
 
 
 

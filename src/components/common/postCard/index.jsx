@@ -6,6 +6,7 @@ import { getCurrenUser,getAllUsers,deletePost } from '../../../api/FireStore';
 import TotalLike from '../likeButton/TotalLike';
 import { RxCross1 } from "react-icons/rx";
 import {  Modal } from "antd";
+import { BiSolidLike } from "react-icons/bi"
 
 const PostCard= ({posts ,id,getEditzData,allImgOpen}) => {
   let navigate = useNavigate();
@@ -59,7 +60,7 @@ const PostCard= ({posts ,id,getEditzData,allImgOpen}) => {
                 <SocialCounts>
                   <li>
                     <button>
-                    <img src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb" alt="" />
+                    <BiSolidLike color='#3498db'/>
                   
                       <span><TotalLike /></span>
                     </button>

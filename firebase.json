@@ -1,31 +1,10 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
-  },
-  "database": {
-    "rules": "database.rules.json"
-  },
-  "emulators": {
-    "hosting": {
-      "port": 5033
-    },
-    "pubsub": {
-      "port": 8085
-    },
-    "ui": {
-      "enabled": true
-    },
-    "singleProjectMode": true
   }
 }

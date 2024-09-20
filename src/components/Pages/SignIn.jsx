@@ -5,7 +5,7 @@ import{ LoginAPI,googleSignInAPI} from '../../api/AuthApi';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from '../../lib/firebase';
 import Loader from '../common/Loader';
 import SignInC from '../SignInC';
 

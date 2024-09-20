@@ -1,7 +1,7 @@
 import  { useEffect ,useState,useMemo} from 'react'
 import ProfileComponent from '../ProfileC';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from '../../lib/firebase';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../common/Loader';
 import { getCurrenUser } from '../../api/FireStore';

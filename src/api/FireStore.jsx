@@ -1,4 +1,4 @@
-import { firestore} from '../firebase';
+import { firestore} from '../lib/firebase';
 import {addDoc,collection,onSnapshot,doc,updateDoc,query,where,setDoc,deleteDoc} from "firebase/firestore";
 import {toast} from "react-toastify";
 

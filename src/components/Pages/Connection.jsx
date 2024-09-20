@@ -1,6 +1,6 @@
 import React, { useEffect ,useState,useMemo} from 'react'
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from '../../lib/firebase';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../common/Loader';
 import ConnectionC from '../ConnectionC';
